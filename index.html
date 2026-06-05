@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Foued Ayedi · AI & MLOps Engineer</title>
+<meta name="description" content="Mohamed Foued Ayedi, AI & MLOps Engineer. I build AI systems that reach production and stay useful: assistants, automation and data tools, built to be secure and to scale.">
+<meta property="og:title" content="Mohamed Foued Ayedi · AI & MLOps Engineer">
+<meta property="og:description" content="I build AI systems that reach production and stay useful: assistants, automation and data tools, built to be secure and to scale.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0D12;
+    --bg-2:#11141B;
+    --bg-3:#161A23;
+    --ink:#ECEBE4;
+    --ink-dim:#9AA0AC;
+    --ink-faint:#5A606E;
+    --accent:#F4B740;
+    --accent-2:#3FD8C4;
+    --line:rgba(236,235,228,0.09);
+    --line-bright:rgba(236,235,228,0.18);
+    --display:'Bricolage Grotesque',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --max:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--display);
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* blueprint grid + glow + grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 75%);
+    opacity:.5;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(700px 400px at 80% -5%,rgba(244,183,64,.10),transparent 70%),
+      radial-gradient(600px 500px at 0% 20%,rgba(63,216,196,.06),transparent 70%);
+  }
+  .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;mix-blend-mode:overlay}
+
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(12px);
+    background:rgba(11,13,18,.6);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s,background .3s;
+  }
+  nav.scrolled{border-bottom:1px solid var(--line);background:rgba(11,13,18,.82)}
+  .nav-inner{max-width:var(--max);margin:0 auto;padding:16px 28px;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.04em;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em}
+  .nav-links a{color:var(--ink-dim);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{border:1px solid var(--line-bright);padding:8px 16px;border-radius:40px;color:var(--ink)!important;transition:all .25s}
+  .nav-cta:hover{background:var(--accent);color:#0B0D12!important;border-color:var(--accent)}
+  .nav-cta::after{display:none}
+  .menu-btn{display:none;font-family:var(--mono);font-size:12px;color:var(--ink);background:none;border:1px solid var(--line-bright);padding:8px 14px;border-radius:40px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  header{padding:170px 0 90px;position:relative}
+  .status{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--accent-2);display:inline-flex;align-items:center;gap:9px;margin-bottom:34px}
+  .status .blip{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2);animation:pulse 2s infinite}
+  h1{font-size:clamp(2.7rem,7vw,5.4rem);font-weight:700;line-height:.98;letter-spacing:-.03em}
+  h1 .role{display:block;color:var(--ink-faint);font-weight:300;font-size:clamp(1.3rem,3vw,2.1rem);letter-spacing:-.01em;margin-top:14px}
+  .tagline{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--ink-dim);font-weight:300;max-width:620px;margin-top:30px;line-height:1.55}
+  .tagline b{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.02em;padding:14px 26px;border-radius:44px;display:inline-flex;align-items:center;gap:10px;transition:all .25s;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#0B0D12;font-weight:600}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(244,183,64,.5)}
+  .btn-ghost{border:1px solid var(--line-bright);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);background:rgba(236,235,228,.04)}
+  .hero-stats{display:flex;gap:14px;margin-top:60px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:var(--bg-2);border-radius:12px;padding:14px 18px;min-width:130px}
+  .chip .n{font-family:var(--mono);font-size:1.45rem;font-weight:600;color:var(--accent)}
+  .chip .l{font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:.02em;margin-top:5px;line-height:1.35}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:90px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:54px}
+  .sec-idx{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.05em;padding-top:7px}
+  .sec-title{font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:600;letter-spacing:-.02em;line-height:1.05}
+  .sec-sub{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin-top:8px}
+
+  /* ---------- APPROACH ---------- */
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .principle{background:var(--bg);padding:34px 30px;transition:background .3s}
+  .principle:hover{background:var(--bg-2)}
+  .principle .pn{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-bottom:18px}
+  .principle h3{font-size:1.22rem;font-weight:600;margin-bottom:11px;letter-spacing:-.01em}
+  .principle h3 .acc{color:var(--accent)}
+  .principle p{font-size:.96rem;color:var(--ink-dim);font-weight:300;line-height:1.6}
+
+  /* ---------- WORK ---------- */
+  .projects{display:flex;flex-direction:column;gap:22px}
+  .project{
+    border:1px solid var(--line);border-radius:18px;background:var(--bg-2);
+    padding:36px;transition:border-color .3s,transform .3s;position:relative;overflow:hidden;
+  }
+  .project::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+  .project:hover{border-color:var(--line-bright);transform:translateY(-3px)}
+  .project:hover::before{transform:scaleY(1)}
+  .project.featured{background:linear-gradient(135deg,var(--bg-3),var(--bg-2))}
+  .p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  .p-org{font-family:var(--mono);font-size:12px;color:var(--accent-2);letter-spacing:.04em;margin-bottom:11px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .p-org .tag{color:var(--ink-faint);border:1px solid var(--line);border-radius:30px;padding:3px 10px;font-size:10.5px}
+  .project h3{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .project .desc{color:var(--ink-dim);font-weight:300;font-size:1rem;max-width:680px;margin-top:14px;line-height:1.62}
+  .p-stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .p-stack span{font-family:var(--mono);font-size:11px;color:var(--ink-dim);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:5px 9px}
+  .metrics{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+  .metric .mn{font-family:var(--mono);font-size:1.55rem;font-weight:600;color:var(--accent)}
+  .metric .ml{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:5px;letter-spacing:.01em;max-width:150px;line-height:1.4}
+  .est{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:18px;font-style:normal}
+  .est::before{content:"◇ ";color:var(--accent)}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--line-bright)}
+  .tl-item{position:relative;padding:0 0 38px 30px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-26px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .tl-date{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.02em}
+  .tl-role{font-size:1.2rem;font-weight:600;margin:6px 0 3px;letter-spacing:-.01em}
+  .tl-org{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim)}
+  .tl-desc{color:var(--ink-dim);font-weight:300;font-size:.95rem;margin-top:10px;max-width:680px;line-height:1.6}
+
+  /* ---------- CAPABILITIES ---------- */
+  .caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+  .cap{border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--bg-2)}
+  .cap h4{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.05em;margin-bottom:18px;text-transform:uppercase}
+  .cap .items{display:flex;flex-wrap:wrap;gap:8px}
+  .cap .items span{font-size:.86rem;color:var(--ink-dim);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:6px 11px;transition:all .2s}
+  .cap .items span:hover{color:var(--ink);border-color:var(--line-bright)}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+  .about-text p{color:var(--ink-dim);font-weight:300;font-size:1.05rem;line-height:1.7;margin-bottom:18px}
+  .about-text p b{color:var(--ink);font-weight:600}
+  .about-side .blk{border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:16px;background:var(--bg-2)}
+  .about-side h5{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+  .about-side .edu{margin-bottom:14px}
+  .about-side .edu:last-child{margin-bottom:0}
+  .about-side .edu .d{font-size:.95rem;font-weight:600}
+  .about-side .edu .s{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);margin-top:3px}
+  .langs{display:flex;flex-direction:column;gap:11px}
+  .lang{display:flex;justify-content:space-between;align-items:center;font-size:.95rem}
+  .lang .lvl{font-family:var(--mono);font-size:11px;color:var(--ink-dim)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{text-align:center;padding:110px 0 90px}
+  .contact .big{font-size:clamp(2rem,5vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:760px;margin:0 auto}
+  .contact .big .acc{color:var(--accent)}
+  .contact p{color:var(--ink-dim);font-weight:300;font-size:1.1rem;margin:24px auto 38px;max-width:520px}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--line);padding:30px 0}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .foot-inner a{color:var(--ink-dim);transition:color .2s}
+  .foot-inner a:hover{color:var(--accent)}
+
+  /* ---------- REVEAL ---------- */
+  [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:780px){
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg-2);padding:22px 28px;gap:18px;border-bottom:1px solid var(--line)}
+    header{padding:140px 0 60px}
+    .about-grid{grid-template-columns:1fr;gap:30px}
+    .metrics{gap:22px}
+    .project{padding:28px 22px}
+    .sec-head{flex-direction:column;gap:6px;margin-bottom:38px}
+  }
+</style>
+</head>
+<body>
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="dot"></span>MFA<span style="color:var(--ink-faint)">/</span>ai-mlops</a>
+    <div class="nav-links" id="navlinks">
+      <a href="#approach">approach</a>
+      <a href="#work">work</a>
+      <a href="#experience">experience</a>
+      <a href="#capabilities">stack</a>
+      <a href="#about">about</a>
+      <a href="#contact" class="nav-cta">Start a project →</a>
+    </div>
+    <button class="menu-btn" id="menuBtn">menu</button>
+  </div>
+</nav>
+
+<div id="top"></div>
+<header>
+  <div class="wrap">
+    <div class="status" data-reveal><span class="blip"></span>AVAILABLE · FREELANCE &amp; FULL-TIME</div>
+    <h1 data-reveal>Mohamed Foued Ayedi<span class="role">AI &amp; MLOps Engineer</span></h1>
+    <p class="tagline" data-reveal>I build AI systems that <b>reach production and stay useful</b>: assistants, automation and internal tools that teams rely on every day. Shipped quickly, <b>secured properly</b>, and built to grow.</p>
+    <div class="hero-cta" data-reveal>
+      <a href="#contact" class="btn btn-primary">Start a project →</a>
+      <a href="#work" class="btn btn-ghost">View selected work</a>
+    </div>
+    <div class="hero-stats" data-reveal>
+      <div class="chip"><div class="n" data-count="5" data-suffix="+">0</div><div class="l">production projects<br>shipped</div></div>
+      <div class="chip"><div class="n" data-count="2000" data-suffix="+">0</div><div class="l">users served<br>across all systems</div></div>
+      <div class="chip"><div class="n" data-count="6" data-suffix="">0</div><div class="l">client countries<br>CA·FR·UK·UAE·TN·MA</div></div>
+      <div class="chip"><div class="n" data-count="40" data-suffix="%">0%</div><div class="l">faster shipment<br>resolution</div></div>
+      <div class="chip"><div class="n" data-count="95" data-suffix="%">0%</div><div class="l">overall client<br>satisfaction</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-idx">01</span>
+      <div><div class="sec-title">How I work</div><div class="sec-sub">// the engineering principles behind every build</div></div>
+    </div>
+    <div class="principles" data-reveal>
+      <div class="principle">
+        <div class="pn">P-01</div>
+        <h3>Ship at <span class="acc">speed</span></h3>
+        <p>I use AI tooling to move fast: a working version in front of you in days, a production system in weeks. Quick to ship, without skipping the parts that matter.</p>
+      </div>
+      <div class="principle">
+        <div class="pn">P-02</div>
+        <h3>Enterprise <span class="acc">discipline</span></h3>
+        <p>The habits I picked up building for CEVA Logistics and Hydro Energy Group: real testing, staged releases, version control and clean handoffs. Fast doesn't have to mean fragile.</p>
+      </div>
+      <div class="principle">
+        <div class="pn">P-03</div>
+        <h3>Security by <span class="acc">design</span></h3>
+        <p>Sign-in, access control, API gateways and network security are part of the plan from the start, not bolted on at the end.</p>
+      </div>
+      <div class="principle">
+        <div class="pn">P-04</div>
+        <h3>Built to <span class="acc">scale</span></h3>
+        <p>Systems that start as a small proof of concept and keep working once they reach hundreds of users across dozens of sites.</p>
+      </div>
+      <div class="principle">
+        <div class="pn">P-05</div>
+        <h3>Made to <span class="acc">fit</span></h3>
+        <p>I build around your data, your tools and your constraints. No forcing your problem into a generic template.</p>
+      </div>
+      <div class="principle">
+        <div class="pn">P-06</div>
+        <h3>Proof it <span class="acc">works</span></h3>
+        <p>Every system ships with evaluation built in and live KPIs, so you can see its real impact: quality, cost, time saved and adoption, tracked over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-idx">02</span>
+      <div><div class="sec-title">Selected work</div><div class="sec-sub">// production systems &amp; freelance engagements</div></div>
+    </div>
+    <div class="projects">
+
+      <!-- MyCeva -->
+      <div class="project featured" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">CEVA LOGISTICS <span class="tag">Production</span> <span class="tag">RAG assistant</span></div>
+            <h3>MyCeva, the shipment-tracking assistant</h3>
+          </div>
+        </div>
+        <p class="desc">A customer-facing assistant for tracking shipments, built on Google CX Studio and GCP. It answers tracking and status questions on its own, so customers get an instant reply and support agents only pick up the cases that genuinely need a person.</p>
+        <div class="p-stack"><span>Google CX Studio</span><span>GCP</span><span>RAG</span><span>Dialogflow</span></div>
+        <div class="metrics">
+          <div class="metric"><div class="mn" data-count="300" data-suffix="">0</div><div class="ml">authenticated users</div></div>
+          <div class="metric"><div class="mn" data-count="2500" data-suffix="+">0</div><div class="ml">conversations</div></div>
+          <div class="metric"><div class="mn" data-count="72" data-suffix="%">0</div><div class="ml">handled without an agent</div></div>
+          <div class="metric"><div class="mn" data-count="2" data-suffix=" mo">0</div><div class="ml">to reach this scale</div></div>
+        </div>
+      </div>
+
+      <!-- Hydro -->
+      <div class="project featured" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">HYDRO ENERGY GROUP <span class="tag">Freelance</span> <span class="tag">Automation</span></div>
+            <h3>Automated CV processing inside Bullhorn</h3>
+          </div>
+        </div>
+        <p class="desc">An automation that handles candidate CVs from end to end inside Bullhorn. It pulls each CV, reads and structures the details with Gemini to match the agency's format, then writes the clean record back into Bullhorn with no manual step in between. Recruiters get a dashboard showing volume processed, match quality and accuracy at a glance.</p>
+        <div class="p-stack"><span>Gemini</span><span>Bullhorn API</span><span>Python</span><span>Schema matching</span><span>KPI dashboards</span></div>
+        <div class="metrics">
+          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">less manual handling time</div></div>
+          <div class="metric"><div class="mn" data-count="95" data-suffix="%">0</div><div class="ml">field-matching accuracy</div></div>
+          <div class="metric"><div class="mn">12m→30s</div><div class="ml">processing time per CV</div></div>
+          <div class="metric"><div class="mn" data-count="70" data-suffix="%">0</div><div class="ml">lower processing cost</div></div>
+        </div>
+      </div>
+
+      <!-- Precisia -->
+      <div class="project" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">PRECISIA CARE <span class="tag">Healthcare</span> <span class="tag">Switzerland</span></div>
+            <h3>Clinical assistant for doctors</h3>
+          </div>
+        </div>
+        <p class="desc">A tool used by doctors in Switzerland that reads patient files, including free-text notes, and turns them into clear summaries and dashboards a clinician can act on quickly. It runs on open-source models tuned to work on ordinary CPUs, which keeps it cheap to operate, and a built-in checking step keeps an eye on the quality of what it pulls out.</p>
+        <div class="p-stack"><span>LangChain</span><span>LangGraph</span><span>pgvector</span><span>llama.cpp</span><span>Qwen / Mistral</span><span>DeepEval</span></div>
+        <div class="metrics">
+          <div class="metric"><div class="mn" data-count="30" data-suffix=" min">0</div><div class="ml">saved per patient file</div></div>
+          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">doctor satisfaction</div></div>
+          <div class="metric"><div class="mn" data-count="60" data-suffix="%">0</div><div class="ml">lower running cost</div></div>
+        </div>
+      </div>
+
+      <!-- WavaMed -->
+      <div class="project" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">WAVAMED <span class="tag">Co-founder</span> <span class="tag">In development</span></div>
+            <h3>Early sepsis warning for hospitals</h3>
+          </div>
+        </div>
+        <p class="desc">A health-tech startup I co-founded that builds models to flag sepsis earlier in hospitals in Morocco. The aim is straightforward: give care teams a clear early warning from the patient data they already collect, in time to act on it. Currently in active development.</p>
+        <div class="p-stack"><span>Clinical ML</span><span>Early warning</span><span>Healthcare</span><span>Python</span></div>
+      </div>
+
+      <!-- Labor opt -->
+      <div class="project" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">CEVA LOGISTICS <span class="tag">Backend / MLOps</span></div>
+            <h3>Warehouse staffing platform</h3>
+          </div>
+        </div>
+        <p class="desc">The backend for software that helps plan warehouse staffing across 25 cities in France. I built the APIs and the data pipelines behind it, handled secure sign-in, and managed the move into production. I also set up the production network layer: the API gateway, reverse proxy, load balancer and access control, coordinating across the dev, security and IT teams.</p>
+        <div class="p-stack"><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>JWT / OAuth2</span><span>GCP</span><span>WSO2</span></div>
+        <div class="metrics">
+          <div class="metric"><div class="mn" data-count="200" data-suffix="+">0</div><div class="ml">users served</div></div>
+          <div class="metric"><div class="mn" data-count="30" data-suffix="+">0</div><div class="ml">warehouses</div></div>
+          <div class="metric"><div class="mn" data-count="25" data-suffix="">0</div><div class="ml">cities across France</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-idx">03</span>
+      <div><div class="sec-title">Experience</div><div class="sec-sub">// roles &amp; research</div></div>
+    </div>
+    <div class="timeline" data-reveal>
+      <div class="tl-item">
+        <div class="tl-date">SEP 2025 → PRESENT · REMOTE</div>
+        <div class="tl-role">AI &amp; MLOps Engineer</div>
+        <div class="tl-org">CEVA Logistics</div>
+        <div class="tl-desc">Built the MyCeva shipment assistant and the backend for the warehouse staffing platform. Looked after production networking and releases, and helped the team get comfortable with AI-assisted development.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">OCT 2024 → SEP 2025 · TUNIS</div>
+        <div class="tl-role">AI Engineer</div>
+        <div class="tl-org">Precisia Care SA</div>
+        <div class="tl-desc">Built a clinical tool for doctors that reads patient files and produces summaries, running on cost-efficient open-source models with its own quality checks.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">JUL 2024 → SEP 2024 · CANADA</div>
+        <div class="tl-role">Mitacs Globalink Research Intern</div>
+        <div class="tl-org">University of Winnipeg</div>
+        <div class="tl-desc">Fixed a class-imbalance problem in a sentiment classifier, raising its F1 score from 72% to 80%, and presented the work at an academic seminar.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">JAN 2024 → JUN 2024 · PARIS</div>
+        <div class="tl-role">Data Science R&amp;D Intern</div>
+        <div class="tl-org">Beyable</div>
+        <div class="tl-desc">Built an internal tool that turned analytics data into written KPI summaries, cutting the time managers spent putting reports together by hand.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-idx">04</span>
+      <div><div class="sec-title">Stack &amp; capabilities</div><div class="sec-sub">// the toolkit</div></div>
+    </div>
+    <div class="caps">
+      <div class="cap" data-reveal>
+        <h4>AI &amp; Agents</h4>
+        <div class="items"><span>LangChain</span><span>LangGraph</span><span>PydanticAI</span><span>ADK</span><span>MCP</span><span>Gemini</span><span>Claude</span><span>GPT</span><span>Mistral</span><span>DeepSeek</span><span>Dialogflow</span></div>
+      </div>
+      <div class="cap" data-reveal>
+        <h4>RAG &amp; Document Processing</h4>
+        <div class="items"><span>pgvector</span><span>Qdrant</span><span>FAISS</span><span>SentenceTransformers</span><span>Hugging Face</span><span>llama.cpp</span><span>Docling</span><span>PaddleOCR</span></div>
+      </div>
+      <div class="cap" data-reveal>
+        <h4>Languages &amp; Frameworks</h4>
+        <div class="items"><span>Python</span><span>SQL</span><span>FastAPI</span><span>Streamlit</span><span>Pydantic</span><span>REST APIs</span></div>
+      </div>
+      <div class="cap" data-reveal>
+        <h4>Cloud &amp; DevOps</h4>
+        <div class="items"><span>GCP Vertex AI</span><span>Document AI</span><span>Cloud Run</span><span>Cloud Storage</span><span>BigQuery</span><span>GitLab</span><span>Jenkins CI/CD</span><span>WSO2 Gateway</span><span>Reverse Proxy</span><span>Load Balancing</span></div>
+      </div>
+      <div class="cap" data-reveal>
+        <h4>Data &amp; Observability</h4>
+        <div class="items"><span>PostgreSQL</span><span>Redis</span><span>Elasticsearch</span><span>LangSmith</span><span>DeepEval</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-idx">05</span>
+      <div><div class="sec-title">About</div><div class="sec-sub">// the person behind the systems</div></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text" data-reveal>
+        <p>I'm an AI and MLOps engineer based in Tunis. I've worked with teams in Canada, France, the UK, the UAE, Tunisia and Morocco, mostly on the parts of AI that tend to get overlooked: getting data in cleanly, checking the output is actually right, keeping things secure, and getting them running in production. The demo is the easy part. Making it dependable is the real work.</p>
+        <p>What I'm good at is <b>moving quickly without breaking things</b>. I use AI tools to shorten timelines that used to take teams months, then apply the engineering habits I picked up at CEVA Logistics and Hydro Energy Group so the result holds up: tested, secure and ready to grow.</p>
+        <p>If you're a startup that needs something built and shipped, or a company hiring for AI and MLOps, I bring <b>work shaped around your actual problem</b>, and the numbers to show it's doing its job.</p>
+      </div>
+      <div class="about-side" data-reveal>
+        <div class="blk">
+          <h5>Education</h5>
+          <div class="edu"><div class="d">Engineering Degree, Telecommunications (AI Focus)</div><div class="s">Higher School of Communication of Tunis (Sup'com) · 2021 → 2024</div></div>
+          <div class="edu"><div class="d">Associate Degree, Mathematics &amp; Physics</div><div class="s">Sfax Preparatory Engineering Institute (IPEIS) · 2019 → 2021</div></div>
+        </div>
+        <div class="blk">
+          <h5>Languages</h5>
+          <div class="langs">
+            <div class="lang"><span>Arabic</span><span class="lvl">Native</span></div>
+            <div class="lang"><span>English</span><span class="lvl">Fluent · Professional</span></div>
+            <div class="lang"><span>French</span><span class="lvl">Fluent</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="big" data-reveal>Let's build something that <span class="acc">ships</span> and keeps working.</div>
+    <p data-reveal>Open to freelance projects and full-time roles in AI and MLOps. Tell me what you're building.</p>
+    <div class="contact-links" data-reveal>
+      <a href="mailto:mfouedayedi@gmail.com" class="btn btn-primary">mfouedayedi@gmail.com</a>
+      <a href="https://linkedin.com/in/ayedifoued" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+      <a href="tel:+21629885211" class="btn btn-ghost">+216 29 885 211</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Mohamed Foued Ayedi · Tunis, Tunisia</div>
+    <div><a href="mailto:mfouedayedi@gmail.com">email</a> · <a href="https://linkedin.com/in/ayedifoued" target="_blank" rel="noopener">linkedin</a></div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+  // mobile menu
+  const links=document.getElementById('navlinks'),btn=document.getElementById('menuBtn');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.addEventListener('click',e=>{if(e.target.tagName==='A')links.classList.remove('open')});
+
+  // reveal + counters
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        en.target.querySelectorAll('[data-count]').forEach(runCount);
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:.18});
+  document.querySelectorAll('[data-reveal]').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*0.05)+'s';io.observe(el)});
+
+  function runCount(el){
+    if(el.dataset.done)return; el.dataset.done=1;
+    const target=+el.dataset.count, suffix=el.dataset.suffix||'';
+    const dur=1100, t0=performance.now();
+    function step(t){
+      const p=Math.min((t-t0)/dur,1);
+      const e=1-Math.pow(1-p,3);
+      let v=Math.round(target*e);
+      el.textContent=(v>=1000?v.toLocaleString():v)+suffix;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  // run counters already in hero on load
+  addEventListener('load',()=>{document.querySelectorAll('header [data-count]').forEach(runCount)});
+</script>
+</body>
+</html>
