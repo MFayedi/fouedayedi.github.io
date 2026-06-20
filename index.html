@@ -317,21 +317,21 @@
         </div>
       </div>
 
-      <!-- Hydro -->
+      <!-- IT RFQ -->
       <div class="project featured" data-reveal>
         <div class="p-top">
           <div>
-            <div class="p-org">HYDRO ENERGY GROUP <span class="tag">Freelance</span> <span class="tag">Automation</span></div>
-            <h3>Automated CV processing inside Bullhorn</h3>
+            <div class="p-org">CEVA LOGISTICS <span class="tag">Agentic AI</span> <span class="tag">EU Pilot</span></div>
+            <h3>IT RFQ requirement analysis</h3>
           </div>
         </div>
-        <p class="desc">An automation that handles candidate CVs from end to end inside Bullhorn. It pulls each CV, reads and structures the details with Gemini to match the agency's format, then writes the clean record back into Bullhorn with no manual step in between. Recruiters get a dashboard showing volume processed, match quality and accuracy at a glance.</p>
-        <div class="p-stack"><span>Gemini</span><span>Bullhorn API</span><span>Python</span><span>Schema matching</span><span>KPI dashboards</span></div>
+        <p class="desc">A two-agent system that automates how the IT presales team analyses customer tenders. Agent 1 ingests tender documents from SharePoint (Word, Excel, PDF, PowerPoint), extracts and structures the IT requirements against a checklist, flags gaps and generates clarification questions. Agent 2 takes the validated requirements and maps them to the right solution using decision trees maintained by the business, not in code. A human checkpoint sits between every stage, and no agent acts on its own. Built on the Mistral Workflows SDK with durable execution, so long multi-step runs survive restarts. Targeting an EU pilot.</p>
+        <div class="p-stack"><span>Mistral Workflows</span><span>Maia</span><span>Durable Agents</span><span>SharePoint</span><span>Python</span></div>
         <div class="metrics">
-          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">less manual handling time</div></div>
-          <div class="metric"><div class="mn" data-count="95" data-suffix="%">0</div><div class="ml">field-matching accuracy</div></div>
-          <div class="metric"><div class="mn">12m→30s</div><div class="ml">processing time per CV</div></div>
-          <div class="metric"><div class="mn" data-count="70" data-suffix="%">0</div><div class="ml">lower processing cost</div></div>
+          <div class="metric"><div class="mn" data-count="950" data-suffix="">0</div><div class="ml">tenders per year</div></div>
+          <div class="metric"><div class="mn">8h→2h</div><div class="ml">target time per tender</div></div>
+          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">extraction coverage target</div></div>
+          <div class="metric"><div class="mn" data-count="75" data-suffix="%">0</div><div class="ml">ITBP acceptance target</div></div>
         </div>
       </div>
 
@@ -343,8 +343,8 @@
             <h3>Clinical assistant for doctors</h3>
           </div>
         </div>
-        <p class="desc">A tool used by doctors in Switzerland that reads patient files, including free-text notes, and turns them into clear summaries and dashboards a clinician can act on quickly. It runs on open-source models tuned to work on ordinary CPUs, which keeps it cheap to operate, and a built-in checking step keeps an eye on the quality of what it pulls out.</p>
-        <div class="p-stack"><span>LangChain</span><span>LangGraph</span><span>pgvector</span><span>llama.cpp</span><span>Qwen / Mistral</span><span>DeepEval</span></div>
+        <p class="desc">A clinical AI assistant used by doctors in Switzerland, built on multi-agent workflows and knowledge graphs. LLM pipelines extract structured data from PostgreSQL, with a PGVector store for fast retrieval and the agents orchestrated through LangChain and LangGraph. It runs on open-source LLMs (Qwen, Mistral, DeepSeek, LLaMA) and is served through FastAPI for internal and clinical use.</p>
+        <div class="p-stack"><span>LangChain</span><span>LangGraph</span><span>Knowledge Graphs</span><span>PGVector</span><span>PostgreSQL</span><span>FastAPI</span><span>Qwen / Mistral / DeepSeek / LLaMA</span></div>
         <div class="metrics">
           <div class="metric"><div class="mn" data-count="30" data-suffix=" min">0</div><div class="ml">saved per patient file</div></div>
           <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">doctor satisfaction</div></div>
@@ -364,6 +364,24 @@
         <div class="p-stack"><span>Clinical AI</span><span>EU MDR Class IIa</span><span>FHIR R4</span><span>On-premise</span><span>Equity by design</span><span>Python</span></div>
       </div>
 
+      <!-- Hydro -->
+      <div class="project" data-reveal>
+        <div class="p-top">
+          <div>
+            <div class="p-org">HYDRO ENERGY GROUP <span class="tag">Freelance</span> <span class="tag">Automation</span></div>
+            <h3>Automated CV processing inside Bullhorn</h3>
+          </div>
+        </div>
+        <p class="desc">An automation that handles candidate CVs from end to end inside Bullhorn. It pulls each CV, reads and structures the details with Gemini to match the agency's format, then writes the clean record back into Bullhorn with no manual step in between. Recruiters get a dashboard showing volume processed, match quality and accuracy at a glance.</p>
+        <div class="p-stack"><span>Gemini</span><span>Bullhorn API</span><span>Python</span><span>Schema matching</span><span>KPI dashboards</span></div>
+        <div class="metrics">
+          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">less manual handling time</div></div>
+          <div class="metric"><div class="mn" data-count="95" data-suffix="%">0</div><div class="ml">field-matching accuracy</div></div>
+          <div class="metric"><div class="mn">12m→30s</div><div class="ml">processing time per CV</div></div>
+          <div class="metric"><div class="mn" data-count="70" data-suffix="%">0</div><div class="ml">lower processing cost</div></div>
+        </div>
+      </div>
+
       <!-- Labor opt -->
       <div class="project" data-reveal>
         <div class="p-top">
@@ -381,24 +399,6 @@
         </div>
       </div>
 
-      <!-- IT RFQ -->
-      <div class="project" data-reveal>
-        <div class="p-top">
-          <div>
-            <div class="p-org">CEVA LOGISTICS <span class="tag">Agentic AI</span> <span class="tag">EU Pilot</span></div>
-            <h3>IT RFQ requirement analysis</h3>
-          </div>
-        </div>
-        <p class="desc">A two-agent system that automates how the IT presales team analyses customer tenders. Agent 1 ingests tender documents from SharePoint (Word, Excel, PDF, PowerPoint), extracts and structures the IT requirements against a checklist, flags gaps and generates clarification questions. Agent 2 takes the validated requirements and maps them to the right solution using decision trees maintained by the business, not in code. A human checkpoint sits between every stage, and no agent acts on its own. Built on the Mistral Workflows SDK with durable execution, so long multi-step runs survive restarts. Targeting an EU pilot.</p>
-        <div class="p-stack"><span>Mistral Workflows</span><span>Maia</span><span>Durable Agents</span><span>SharePoint</span><span>Python</span></div>
-        <div class="metrics">
-          <div class="metric"><div class="mn" data-count="950" data-suffix="">0</div><div class="ml">tenders per year</div></div>
-          <div class="metric"><div class="mn">8h→2h</div><div class="ml">target time per tender</div></div>
-          <div class="metric"><div class="mn" data-count="90" data-suffix="%">0</div><div class="ml">extraction coverage target</div></div>
-          <div class="metric"><div class="mn" data-count="75" data-suffix="%">0</div><div class="ml">ITBP acceptance target</div></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -410,10 +410,16 @@
     </div>
     <div class="timeline" data-reveal>
       <div class="tl-item">
-        <div class="tl-date">SEP 2025 → PRESENT · REMOTE</div>
+        <div class="tl-date">SEP 2025 → PRESENT · HYBRID</div>
         <div class="tl-role">AI &amp; MLOps Engineer</div>
         <div class="tl-org">CEVA Logistics</div>
         <div class="tl-desc">Built the MyCeva shipment assistant and the backend for the warehouse staffing platform. Looked after production networking and releases, and helped the team get comfortable with AI-assisted development.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025 → PRESENT · REMOTE</div>
+        <div class="tl-role">Founding Engineer (Part-time)</div>
+        <div class="tl-org">WavaMed</div>
+        <div class="tl-desc">Building clinical AI infrastructure that flags patient deterioration on hospital wards early, from the data hospitals already collect.</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">OCT 2024 → SEP 2025 · TUNIS</div>
